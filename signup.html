@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="uft-8">
+	<title>Signup for Membership</title>
+	<link rel="stylesheet" href="style.css">
+	<script>
+		// And we kick off with our friend JavaScript
+		window.onload = function() {
+			// We could abstract this out to a variable but why?
+			document.getElementById('jsmsg').hidden = true;
+			// Grab all of the form messages.
+			var msg = document.getElementsByTagName('span');
+			// Because we have more than one we need to iterate through them
+			// and hide em.
+			for (var i = 0; i < msg.length; i++) {
+				msg[i].hidden = true;
+			}
+
+
+			
+
+
+		};
+
+		function validateForm() {
+			console.log('Form validation has started.');
+
+			// Assume the form will validate.
+			var ok = true;
+
+			// Get both password fields.
+			var password = document.getElementById('password'),
+					passAgain = document.getElementById('password_repeat'),
+					email = document.getElementById('email'),
+					surname = document.getElementById('surname'),
+					forename = document.getElementById('forename'),
+					username = document.getElementById('username');
+
+			// I'm no good with regular expressions.
+			if (password.value.length < 8 || 
+					password.value.search(/[A-Z]/) == -1 || 
+					password.value.search(/[a-z]/) == -1 || 
+					password.value.search(/[0-9]/) == -1) {
+				// Uh-oh we have errors.
+				document.getElementById('password_msg').hidden = false;
+				password.focus(); // Set the focus to the FAIL field.  
+				// Stop the form from sending.
+				ok = false;
+			} else {
+				document.getElementById('password_msg').hidden = true;
+				ok = true;
+			}
+
+			if (password.value != passAgain.value) {
+				// Damn man! we just keep getting errors.
+				document.getElementById('password_repeat_msg').hidden = false;
+				password.focus();
+				ok = false;
+			} else {
+				document.getElementById('password_repeat_msg').hidden = true;
+				ok = true;
+			}
+
+			if (email.value.search(/\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i) == -1) {
+				document.getElementById('email_msg').hidden = false;
+				email.focus();
+				ok = false;
+			} else {
+				document.getElementById('email_msg').hidden = true;
+				ok = true;
+			}
+
+			if (forename.value.length < 1) {
+				document.getElementById('forename_msg').hidden = false;
+				forename.focus();
+				ok = false;
+			} else {
+				document.getElementById('forename_msg').hidden = true;
+				ok = true;
+			}
+
+			if (surname.value.length < 1) {
+				document.getElementById('surname_msg').hidden = false;
+				surname.focus();
+				ok = false;
+			} else {
+				document.getElementById('surname_msg').hidden = true;
+				ok = true;
+			}
+
+			if (username.value.length < 4) {
+				document.getElementById('username_msg').hidden = false;
+				username.focus();
+				ok = false;
+			} else {
+				document.getElementById('username_msg').hidden = true;
+				ok = true;
+			}
+
+			// Return the ok variable.
+			return ok;
+		}
+
+
+	</script>
+</head>
+<body>
+	
+	<div id="jsmsg">
+		<p>Please turn on JavaScript!</p>
+	</div><!-- /jsmsg -->
+
+	<div id="wrapper">
+		<h1>Sign-Up for Membership</h1>
+		<form id="signup" method="POST" action="signup.php">
+			
+			<div class="input">
+				<label for="username">Username:</label><br>
+				<input type="text" name="username" id="username"><br>
+				<span class="vlmsg" id="username_msg">Username must be at least 4 alphanumeric characters.</span>
+			</div>
+
+			<div class="input">
+				<label for="forename">Forename:</label><br>
+				<input type="text" name="forename" id="forename"><br>
+				<span class="vlmsg" id="forename_msg">Please enter your forename.</span>
+			</div>
+
+			<div class="input">
+				<label for="surname">Surname:</label><br>
+				<input type="text" name="surname" id="surname"><br>
+				<span class="vlmsg" id="surname_msg">Please enter your surname.</span>
+			</div>
+
+			<div class="input">
+				<label for="email">Email:</label><br>
+				<input type="text" name="email" id="email"><br>
+				<span class="vlmsg" id="email_msg">Please enter a valid email address.</span>
+			</div>
+
+			<div class="input">
+				<label for="password">Password:</label><br>
+				<input type="password" name="password" id="password"><br>
+				<span class="vlmsg" id="password_msg">Password: at least 8 chars, 1 upper, 1 lower and 1 digit.</span>
+			</div>
+
+			<div class="input">
+				<label for="password_repeat">Password Again:</label><br>
+				<input type="password" name="password_repeat" id="password_repeat"><br>
+				<span class="vlmsg" id="password_repeat_msg">Passwords do not match.</span>
+			</div>
+
+			<div class="input">
+				<input type="submit" name="signup" value="Sign-up" onclick="return validateForm();"><br>
+			</div>
+
+		</form>
+	</div><!-- /wrapper -->
+
+</body>
+</html>

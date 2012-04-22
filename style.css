@@ -1,0 +1,68 @@
+/************************
+* DOCUMENT ARCHITECTURE
+*************************/
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font: 14px/22px "Helvetica-Neue", "Helvetica", "Arial", sans-serif;
+}
+
+#wrapper {
+	width: 400px;
+	padding: 15px;
+	margin: 2em auto;
+	border: 1px solid #d1d1d1;
+	background-color: #f9f9f9;
+}
+
+#wrapper p {
+	margin-top: 20px;
+}
+
+/************************
+* FORM
+*************************/
+#wrapper form {
+	margin-top: 20px;
+}
+
+input[type="text"], input[type="password"]  {
+	padding: 5px;
+	width: 385px;
+	outline: none;
+	border: 1px solid #bbb;
+	margin-bottom: 10px;
+	font-size: 16px;
+}
+
+input[type="text"]:hover, input[type="password"]:hover {
+	background-color: #f9f9f9;
+}
+
+/************************
+* TYPOGRAPHY
+*************************/
+h1, h2, h3, h4, h5 {
+	font-weight: normal;
+}
+
+/************************
+* MISC
+*************************/
+#jsmsg {
+	width: 500px;
+	height: 20px;
+	background-color: #FFF8DC;
+	padding: 10px;
+	margin: 2em auto;
+	text-align: center;
+	border: 1px solid #FA8072;
+	font-weight: bold;
+}
+
+span {
+	color: red;
+}
